@@ -1,0 +1,86 @@
+***UTILIZADO DO RENDERER CYCLES***
+
+DADOS BÁSICOS DA RENDERIZAÇÃO:
+
+3:04 de tempo de renderização em GPU
+
+resolução: 1080p HDTV (1920X1080)
+
+Utilizado do Path tracing com 170 amostras
+
+bounces: 8~10
+O cenário possui de superfícies difusas, transparentes, e reflexivos
+	difuso: 8 
+	glossy: 8 
+	transmissão: 8
+	volume: 0
+bounces de transparência: 4
+
+borramento em movimento (motion blur): ativado com shutter de 0.3 e foco no centro do frame,
+explicação sobre ele quando mencionar sobre a chuva.
+
+Tiles:  x: 240
+	y: 216
+	Auto detecção da placa de vídeo (GeForce GTX 1060 6GB)
+
+-----------------------------------------------------------------------------------------------------
+
+OBJETOS DA CENA E O TRABALHO APLICADO SOBRE ELES:
+
+(alguns objetos importados não tinham as texturas mapeadas sobre eles, porém as texturas
+que pertenciam a eles vierem na mesma pasta, logo foram mapeadas com uso dos recursos
+do renderizador)
+
+* Sol: Utilizado um natural que existe no renderizador, ele teve sua cor um pouco escurecida 
+para dar uma sensação de céu nublado, sua força ficou em 10.0, gerando uma sombra perceptível,
+mas fraca para seguir na ideia de céu nublado (devido a chuva que foi utilizada).
+
+* Chão: objeto importado, foram instanciados 4 do mesmo objeto, a qual foram rotacionados
+e posicionados de tal maneira a da impressão de ser apenas um piso em toda imagem.
+
+* Árvores: objeto importado, foram instanciados 3 do mesmo objeto, a qual foram rotacionadas
+e movidas pela cena para dar um ar mais natural.
+
+* Tronco seco e pedras: objeto importado, trata de outro piso, logo, tudo com exceção do tronco
+seco e das 3 pedras que rodeiam uma das árvores da cena foi eliminado depois de importados.
+
+* Tronco da espada: Objeto importado, sem tratamento.
+
+* Espada: Objeto importado, redimensionado e posicionado apropriadamente sobre o tronco,
+foi adicionado um efeito metálico nas partes de metal da espada (todas as partes exceto 
+o cabo de madeira), para isso foi necessário separar o cabo do resto, dividindo o objeto 
+2, na parte de metal foi adicionado um shader principled, a qual as variáveis Mettalic,
+Roughness, Anisotropic, Anisotropic Rotation foram alteradas para 1.0, 0.15, 1.0, 0.625 
+respectivamente. Depois o cabo e as partes de metal foram juntas novamente por um mesh dado
+no renderizador.
+
+* Chuva: Criado um plano por cima da imagem fora do alcance da câmera, nele foi adicionado
+um sistema de partículas, que emite do plano 1000 partículas pela sua área descendo pelo eixo
+Z (comumente trabalhado como Y nas aulas do professor), cada partícula com 50 frames de duração
+durante 250 frames. Foi adicionado efeito de física de pintura dinâmica de pincel para essas
+partículas, para que pudessem interagir com a poça d'água. O Motion Blur adicionado na 
+renderização foi feito para que quando uma gota d'água for renderizada na tela, ela na fique dando
+a sensação estática de ser uma gota parada em meio ao ar, ao invés disso ela se torna mais esticada
+e causa um efeito de refração leve na luz da cena.
+
+* Gota d'água: Criada de uma Icosphere cuja foi simplificada, foi dada a ela o material de água,
+esse material foi criado 
+
+* Poça d'água: Após criar uma deformação no piso deixando uma espécie de buraco nele, esse buraco 
+foi parcialmente encoberto por um plano ajustado a ele, esse plano recebeu um modificador de 
+subdivisão de superfície, fazendo que ele passasse de uma face, para um conjunto de várias faces que
+foram suavizadas para que as ondas geradas nessa poça não ficassem quadriculadas, depois foi 
+atribuído a ele o mesmo material de água utilizado nas gotas de chuvas, e finalmente foi adicionado
+um efeito de física de pintura dinâmica de tela com o tipo de superfície de ondas.
+
+-----------------------------------------------------------------------------------------------------
+
+COMO A CENA FOI GERADA:
+
+Já que a cena dependia das ondas das poças que eram geradas pela chuva criada, foi escolhido um frame
+dentre os 250 a qual a chuva acontecia a qual mantinha um certo agrado visual nas ondas da poça e não
+detinha de gotas de chuva no centro da tela, isso porque o motion blur estava no centro do frame,
+logo, uma gota de chuva no centro da tela não daria a impressão de estar em movimento, depois disso
+a câmera foi focada na espada sobre o tronco com um tamanho de aperture de 0.06 para o borramento
+dos arredores da cena, isso dificulta de ver as gotas de chuva um pouco mais, dando uma sensação mais
+real para elas.
