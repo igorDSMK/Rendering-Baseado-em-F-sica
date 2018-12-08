@@ -83,4 +83,5 @@ detinha de gotas de chuva no centro da tela, isso porque o motion blur estava no
 logo, uma gota de chuva no centro da tela nao daria a impressao de estar em movimento, depois disso
 a camera foi focada na espada sobre o tronco com um tamanho de aperture de 0.06 para o borramento
 dos arredores da cena, isso dificulta de ver as gotas de chuva um pouco mais, dando uma sensacao mais
-real para elas.
+real para elas. Por fim, foi feito um recorte de tudo que se encontrava fora do alcance da câmera e
+foi feita a renderização.
