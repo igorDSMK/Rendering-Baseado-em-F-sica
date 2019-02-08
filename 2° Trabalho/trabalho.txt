@@ -3,9 +3,6 @@ Igor Giovanni da Silva Neves - 1150376
 
 No trabalho foram feitos os algoritmos de abordagem ingenua e o de Moller.
 Para ambos os algoritmos foram utilizados 1000 triangulos renderizados por loop FOR para comparar perfomance em um caso mais rigoroso que nao o apresentativo de apenas tres triangulos.
-No de abordagem ingenua, foi seguido do modelo do material fornecido pelo professor na formalizacao dessa atividade, todos os parametros utilizados na execucao da atividade, foram
-mantidos inalteraveis do fornecido pelo professor, no scene.cpp foi alterado a funcao load(), colocando-se dois loops de FOR, cada um com 500 repeticoes (um para colocar triangulos
-do centro ao extremo do espaco, e outro para vim do outro extremo ate o centro). Foram necessarios 5.98819 segundos para que o processo fosse terminado.
-No de Moller, tambem foi seguido do material fornecido pelo professor, tudo permaneceu igual ao de abordagem ingenua, fora e claro a funcao intersect(const Ray &ray,
-	IntersectionRecord &intersection_record).
-O tempo necessario no de Moller foi de 4.56901.
+
+No de abordagem ingenua, foi seguido do modelo do material fornecido pelo professor na formalizacao dessa atividade, todos os parametros utilizados na execucao da atividade, foram mantidos inalteraveis do fornecido pelo professor, no scene.cpp foi alterado a funcao load(), colocando-se dois loops de FOR, cada um com 500 repeticoes (um para colocar triangulos do centro ao extremo do espaco, e outro para vim do outro extremo ate o centro). Foram necessarios 5.98819 segundos para que o processo fosse terminado.
+No de Moller, tambem foi seguido do material fornecido pelo professor, tudo permaneceu igual ao de abordagem ingenua, fora e claro a funcao intersect(const Ray &ray, IntersectionRecord &intersection_record). O tempo necessario no de Moller foi de 4.56901.
