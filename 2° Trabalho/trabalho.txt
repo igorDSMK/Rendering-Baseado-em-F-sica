@@ -1,5 +1,5 @@
 Vicente Avelino de Oliveira Neto - 11505303
-Igor Giovanni da Silva Neves - 1150376 
+Igor Giovanni da Silva Neves - 11503765
 
 No trabalho foram feitos os algoritmos de abordagem ingenua e o de Moller.
 Para ambos os algoritmos foram utilizados 1000 triangulos para comparar perfomance em um caso mais rigoroso que nao o apresentativo de apenas três triangulos.
