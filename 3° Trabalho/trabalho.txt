@@ -1,0 +1,21 @@
+Igor Giovanni da Silva Neves ----- 11503765 
+Vicente Avelino de Oliveira Neto - 11505303
+
+Camera pinhole: A camera foi feito com base nos calculos dos slides do capitulo 5 das aulas, comparando a camera arbitraria
+pinhole criada nessa atividade com a camera ortografica da ultima atividade, foi adicionado um novo atributo distance_ que 
+diz respeito a distancia da camera ate a tela, fora isso o retorno da funcao getWorldSpaceRay( const glm::vec2 &pixel_coordinate )
+usa e depende do valor distance_, onde agora esse valor e retornado na chamada da funcao no raytracer.
+
+Loader ASSIMP: Foi instalado conforme instrucoes do Github fornecido no documento do trabalho do professor, foi carregado
+um .obj, a qual e carregado como um Mesh, a qual foi tratado de maneira que cada face foi tratada como um triangulo, e foi
+usado da funcao triangulo implementada na atividade anterior para instancia-los usando das posicoes fornecidas pelo ASSIMP
+ao importa-los. Para testes de perfomance foram renderizados 2 .obj com diferentes quantidades de triangulos, o primeiro o
+macaco padrao do blender com 968 triangulos e um segundo com 3936 triangulos: o 1Åã levou 6.80148 segundos no algoritmo de
+abordagem ingenua e 5.27777 segundos no de Moller, o 2Åã levou 32.4875 segundos e 25.5734 segundos nos mesmo algoritmos 
+respectivamentes.
+
+Cor: Foi adotado do sistema RGB com valores em ponto flutuante variando de 0.0 a 1.0, a propriedade de cor foi declarada na
+primitive e entao herdada para os triangulos, as cores estao sendo definidas randomicamente para cada triangulo das imagens
+do trabalho. Foi notado que as cores ficam muito claras quando e feito o produto delas pela distancia ate a primitiva ( t ).
+Entao foi empregado de um valor fixo para multiplicar esse produto, reduzindo a intensidade do resultado (valor 0.2 fornecido
+pelo professor em seu codigo).
