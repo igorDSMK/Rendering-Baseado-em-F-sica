@@ -1,12 +1,13 @@
 Igor Giovanni da Silva Neves ----- 11503765 
 Vicente Avelino de Oliveira Neto - 11505303
 
-TESTES e seus tempos:.......... (a serem acrescentados)847.771 segs shadow - 200 samples
+TESTES e seus tempos:.......... (a serem acrescentados)847.771 segs shadow - 200 samples / 1338.16 segs - 300 samples
+
 
 
 Materiais adicionados: Difusos, espelhos.
 Acrescimos: primitivas agora possuem valores para BRDF, emitancia e tipo.
 
-Difusos: Seguindo os slides fornecidos pelo professor, utilizando dos calculos e do algoritmo que la se encontram, foi criado a funcao de BRDF para os materiais difusos, a qual segue a ideia de escolher um raio aleatorio dentro de um hemisferio com centro no ponto de interseccao, e partir deste raio ate o proximo ponto de interseccao. Houve a dificuldade de que o hemisferio precisaria estar voltado para o lado da normal da superficie interseccionada pelo raio, entao com o uso da classe onb fornecida pelo professor	colocasse o hemisferio na base ortonormal do vetor normal da interseccao, onde ele fica 갾virado갿 para o mesmo 갾lado갿 do ponto de interseccao.
+Difusos: Seguindo os slides fornecidos pelo professor, utilizando dos calculos e do algoritmo que la se encontram, foi criado a funcao de BRDF para os materiais difusos, a qual segue a ideia de escolher um raio aleatorio dentro de um hemisferio com centro no ponto de interseccao, e partir deste raio ate o proximo ponto de interseccao. Houve a dificuldade de que o hemisferio precisaria estar voltado para o lado da normal da superficie interseccionada pelo raio, entao com o uso da classe onb fornecida pelo professor	colocasse o hemisferio na base ortonormal do vetor normal da interseccao, onde ele fica 혖gvirado혖h para o mesmo 혖glado혖h do ponto de interseccao.
 
 Espelho:  precisaria estar voltado para a mesma superficie
