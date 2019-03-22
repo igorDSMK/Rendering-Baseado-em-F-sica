@@ -3,11 +3,13 @@ Vicente Avelino de Oliveira Neto - 11505303
 
 TESTES e seus tempos:.......... (a serem acrescentados)847.771 segs shadow - 200 samples / 1338.16 segs - 300 samples
 
+Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para aprensentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
 
-
+Acréscimos: primitivas agora possuem valores para BRDF, emitancia e tipo.
 Materiais adicionados: Difusos, espelhos.
-Acrescimos: primitivas agora possuem valores para BRDF, emitancia e tipo.
 
-Difusos: Seguindo os slides fornecidos pelo professor, utilizando dos calculos e do algoritmo que la se encontram, foi criado a funcao de BRDF para os materiais difusos, a qual segue a ideia de escolher um raio aleatorio dentro de um hemisferio com centro no ponto de interseccao, e partir deste raio ate o proximo ponto de interseccao. Houve a dificuldade de que o hemisferio precisaria estar voltado para o lado da normal da superficie interseccionada pelo raio, entao com o uso da classe onb fornecida pelo professor	colocasse o hemisferio na base ortonormal do vetor normal da interseccao, onde ele fica gviradoh para o mesmo gladoh do ponto de interseccao.
+Difusos: Foi implementado seguindo os slides fornecidos pelo professor. Utilizando dos cálculos e do algoritmo que lá se encontram, foi criada a função de BRDF para os materiais difusos. A ideia dos cálculos é escolher um raio aleatório dentro de um hemisfério, levando assim a amostragem das BRDFs ser uniforme. Para geração de números randômicos foi utilizada o mesmo algoritmo do Box Filtering.
 
-Espelho:  precisaria estar voltado para a mesma superficie
+Espelho:  O raio refletido gerado pelo material de espelho é obtido construindo uma base ortonomal do objeto interseccionado para poder fazer uma combinação linear com o raio que incide nesse mesmo objeto. Ou seja, o raio mudou de uma base para a base do objeto interseccionado. Após isso, o eixo y da direção do raio é multiplicado por -1 para dar o efeito de espelhamento.
+
+Descrição das cenas:
