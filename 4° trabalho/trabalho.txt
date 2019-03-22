@@ -1,6 +1,7 @@
 Igor Giovanni da Silva Neves ----- 11503765 
 Vicente Avelino de Oliveira Neto - 11505303
 
+#todos os testes foram feitos com raios de profundidade: 5 
 TESTES e seus tempos:.......... (a serem acrescentados)847.771 segs shadow - 200 samples / 1338.16 segs - 300 samples
 
 Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para aprensentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
