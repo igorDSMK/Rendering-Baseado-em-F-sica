@@ -2,12 +2,13 @@ Igor Giovanni da Silva Neves ----- 11503765
 Vicente Avelino de Oliveira Neto - 11505303
 
 #todos os testes foram feitos com raios de profundidade: 5
-TESTES e seus tempos:.......... (a serem acrescentados)847.771 segs shadow - 200 samples / 1338.16 segs - 300 samples
-                                                      975.154 segs espelhos com depth 5 - 300 samples
-                                                      1201.65 segs cena geral - 300 amostras
-                                                      1753.9 segs cena geral depth = 9 - 300 amostras
-                                                      3985.02 segs cena geral depth = 5 - 1000 amostras
-                                                      5830.46 segs cena geral depth = 9 - 1000 amostras
+TESTES e seus tempos:..........847.771 segs shadow - 200 samples / 1338.16 segs - 300 samples
+                               975.154 segs espelhos com depth 5 - 300 samples
+                               1201.65 segs cena geral - 300 amostras
+                               1753.9 segs cena geral depth = 9 - 300 amostras
+                               3985.02 segs cena geral depth = 5 - 1000 amostras
+                               5830.46 segs cena geral depth = 9 - 1000 amostras
+                               4811.6 segs cena geral com espelho depth = 5 - 1000 amostras
                                                       
 Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para aprensentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
 
