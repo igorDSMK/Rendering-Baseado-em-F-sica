@@ -2,26 +2,26 @@ Igor Giovanni da Silva Neves ----- 11503765
 Vicente Avelino de Oliveira Neto - 11505303
 
 #todos os testes foram feitos com raios de profundidade de 5 ou 9, para comparações no tempo de demora e na melhora de perfomace
-TESTES e seus tempos:..........espelhos_5_300 -> 975.154 segs, depth_máx = 5, 300 amostras
-                               espelhos_9_300 -> a ser testado, depth_máx = 9, 300 amostras (teste)
+TESTES e seus tempos:..........espelhos _5_ 300 -> 975.154 segs, depth_máx = 5, 300 amostras
+                               espelhos _9_ 300 -> a ser testado, depth_máx = 9, 300 amostras (teste)
                                cena_5_300 -> 1201.65 segs, depth_máx = 5, 300 amostras
                                cena_9_300 -> 1753.9 segs, depth_máx = 9, 300 amostras
                                cena_5_1000 -> 3985.02 segs, depth_máx = 5, 1000 amostras
                                cena_9_1000 -> 5830.46 segs, depth_máx = 9, 1000 amostras
                                fim_espelho_5_1000 -> 4439.19 segs, depth_máx = 5, 1000 amostras
-                               fim_difuso_5_1000 -> 5213.97 segs, depth_máx = 5, 1000 amostras (re-teste)
+                               fim_difuso_5_1000 -> 4915.78 segs, depth_máx = 5, 1000 amostras
                                847.771 segs shadow, 200 amostras / 1338.16 segs shadow, 300 amostras (re-teste)
                                
-Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para aprensentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
+Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para apresentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
 
-Acréscimos: primitivas agora possuem valores para BRDF, emitancia e tipo.
+Acréscimos: primitivas agora possuem valores para BRDF, emitância e tipo.
 Materiais adicionados: Difusos, espelhos.
 
 Difusos: Foi implementado seguindo os slides fornecidos pelo professor. Utilizando dos cálculos e do algoritmo que lá se encontram, foi criada a função de BRDF para os materiais difusos. A ideia dos cálculos é escolher um raio aleatório dentro de um hemisfério, levando assim a amostragem das BRDFs ser uniforme. Para geração de números randômicos foi utilizada o mesmo algoritmo do Box Filtering.
 
-Espelho:  O raio refletido gerado pelo material de espelho é obtido construindo uma base ortonomal do objeto interseccionado para poder fazer uma combinação linear com o raio que incide nesse mesmo objeto. Ou seja, o raio mudou de uma base para a base do objeto interseccionado. Após isso, o eixo y da direção do raio é multiplicado por -1 para dar o efeito de espelhamento.
+Espelho:  O raio refletido gerado pelo material de espelho é obtido construindo uma base ortonormal do objeto interseccionado para poder fazer uma combinação linear com o raio que incide nesse mesmo objeto. Ou seja, o raio mudou de uma base para a base do objeto interseccionado. Após isso, o eixo y da direção do raio é multiplicado por -1 para dar o efeito de espelhamento.
 
-Descrição das cenas: todas as cenas conscistem de um conjuto de paredes brancas formadas por 2 triangulos formando um paralelepípedo, uma esfera azul e uma esfera (a qual está cortada ao meio pelo "teto" do paralelepípedo) como fonte de luz da cena, as diferenças consistem em pontos diferentes para cada teste:
+Descrição das cenas: todas as cenas consistem de um conjunto de paredes brancas formadas por 2 triangulos formando um paralelepípedo, uma esfera azul e uma esfera (a qual está cortada ao meio pelo "teto" do paralelepípedo) como fonte de luz da cena, as diferenças consistem em pontos diferentes para cada teste:
   .nas "cena_n_m" (as cenas principais para teste e avaliação) foram feitas com uma parede a menos, removendo assim 2 triângulos da renderização, por ficarem por trás da câmera, a sua ausência não apresentou nenhuma diferença considerada relevante;
   .nas "espelhos_n_m" (cenas com a esfera refletida várias vezes pelos espelhos) foram criadas 2 paredes espelhadas, quase tocando a esfera e se tocando em um dos pontos, ficando com um grau raso entre eles da perspectiva da câmera, gerando o efeito visto, os testes com o depth_máx = 5 e depth_máx = 9 foram feitos com o intuito de melhor visualização do efeito causado pela mudança da quantidade de reflexões permitidas;
   .nas "fim_material_n_m" (cenas similares as principais para teste e avaliação) foram feitas com a presença da parede de fundo que havia sido removida nas "cena_n_m" e avaliar o tempo ganho e possíveis perdas de qualidade, constatado um grande ganho no tempo, e pouca perda visual, apenas uma pequena variação na sombra da esfera.
