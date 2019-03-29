@@ -1,13 +1,13 @@
 #include "sphere.h"
 
-Sphere::Sphere( void )
+Sphere::Sphere( void ): center_{0.0f, 0.0f, 0.0f }, radius_(1.0f)
 {}
 
-Sphere::Sphere( const glm::vec3 center,
-                const glm::vec3 color, float radius ) :
-        center_{ center },
-        Primitive::Primitive{color},
-        radius_{radius }
+Sphere::Sphere( const glm::vec3 center, const glm::vec3 color, const glm::vec3 brdf,
+               const glm::vec3 emittance, std::string type, float radius) :
+     Primitive::Primitive(color, brdf, emittance, type),
+     center_(center),
+     radius_(radius)
 {}
 
 bool Sphere::intersect( const Ray &ray,
@@ -43,6 +43,9 @@ bool Sphere::intersect( const Ray &ray,
     intersection_record.position_ = ray.origin_ + intersection_record.t_ * ray.direction_;
     intersection_record.normal_ = glm::normalize( intersection_record.position_ - center_ );
     intersection_record.color_ = color_;
+    intersection_record.brdf_ = brdf_ / ((float) M_PI);
+    intersection_record.emittance_ = emittance_;
+    intersection_record.type_ = type_;
 
     return true;
 }

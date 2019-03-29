@@ -17,8 +17,8 @@ Ray PinholeCamera::getWorldSpaceRay( const glm::vec2 &pixel_coordinate ) const
     float width = max_x_ - min_x_;
     float height = max_y_ - min_y_;
 
-    glm::vec3 aux{(pixel_coordinate[0] + 0.5f) / static_cast<float>(resolution_[0]) * width + min_x_,
-                           (pixel_coordinate[1] + 0.5f) / static_cast<float>(resolution_[1]) * height + min_y_,
+    glm::vec3 aux{(pixel_coordinate[0]) / static_cast<float>(resolution_[0]) * width + min_x_,
+                           (pixel_coordinate[1]) / static_cast<float>(resolution_[1]) * height + min_y_,
                            -distance_};
 
     return Ray{position_, glm::normalize(onb_.getBasisMatrix() * aux)};

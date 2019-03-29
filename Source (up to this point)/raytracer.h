@@ -13,12 +13,13 @@ class RayTracer
 {
 public:
 
-    RayTracer( Camera &camera,
-               const Scene &scene,
-               const glm::vec3 background_color,
-               Buffer &buffer );
+     RayTracer( Camera &camera,
+               const Scene &scene, const glm::vec3 background_color,
+               Buffer &buffer, unsigned int maximum_depth );
 
     void integrate( void );
+    glm::vec3 L(Ray ray, unsigned int curr_depth);
+    unsigned int maximum_depth_;
 
 private:
 

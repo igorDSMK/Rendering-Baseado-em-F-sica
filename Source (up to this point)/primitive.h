@@ -14,7 +14,7 @@ public:
 
     Primitive( void );
 
-    Primitive(glm::vec3 color);
+    Primitive (const glm::vec3 color, const glm::vec3 brdf, const glm::vec3 emittance, std::string type);
 
     virtual ~Primitive( void );
 
@@ -22,8 +22,11 @@ public:
                             IntersectionRecord &intersection_record ) const = 0;
 
      void setColor( glm::vec3 color );
-          
+
      glm::vec3 color_;
+     glm::vec3 brdf_;
+     glm::vec3 emittance_;
+     std::string type_;
 };
 
 #endif /* PRIMITIVE_H_ */
