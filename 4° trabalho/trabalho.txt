@@ -3,7 +3,7 @@ Vicente Avelino de Oliveira Neto - 11505303
 
 #todos os testes foram feitos com raios de profundidade de 5 ou 9, para comparações no tempo de demora e na melhora de perfomace
 TESTES e seus tempos:..........espelhos _5_ 300 -> 975.154 segs, depth_máx = 5, 300 amostras
-                               espelhos _9_ 300 -> a ser testado, depth_máx = 9, 300 amostras (teste)
+                               espelhos _9_ 300 -> 1472.65 segs, depth_máx = 9, 300 amostras
                                cena_5_300 -> 1201.65 segs, depth_máx = 5, 300 amostras
                                cena_9_300 -> 1753.9 segs, depth_máx = 9, 300 amostras
                                cena_5_1000 -> 3985.02 segs, depth_máx = 5, 1000 amostras
@@ -12,7 +12,6 @@ TESTES e seus tempos:..........espelhos _5_ 300 -> 975.154 segs, depth_máx = 5,
                                fim_difuso_5_1000 -> 4915.78 segs, depth_máx = 5, 1000 amostras
                                sombra_5_1000 -> 4109.79 segs, depth_máx = 5, 1000 amostras
                                sombra_5_300 -> 1232.65 segs, depth_máx = 5, 300 amostras
-                               847.771 segs shadow, 200 amostras / 1338.16 segs shadow, 300 amostras (re-teste)
                                
 Box filtering: As amostras de radiância para cada pixel foram implementadas usando o algoritmo Mersenne Twister pelo qual gera números randômicos para apresentar uma distribuição uniforme sobre a área do pixel. A cor do pixel (o resultado final da radiância) é a média das amostras.
 
