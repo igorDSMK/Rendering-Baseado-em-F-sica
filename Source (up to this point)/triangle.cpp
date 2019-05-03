@@ -1,8 +1,7 @@
 ﻿#include "triangle.h"
 
-Triangle::Triangle( const glm::vec3 v1, const glm::vec3 v2,const glm::vec3 v3,
-     const glm::vec3 color, const glm::vec3 brdf, const glm::vec3 emittance, std::string type):
-Primitive::Primitive{color, brdf, emittance, type}, v1{v1}, v2{v2}, v3{v3} {}
+Triangle::Triangle( const glm::vec3 v1, const glm::vec3 v2,const glm::vec3 v3, Material material):
+					Primitive::Primitive{material}, v1{v1}, v2{v2}, v3{v3} {}
 
 bool Triangle::intersect(const Ray &ray,
 	IntersectionRecord &intersection_record) const
@@ -50,11 +49,17 @@ bool Triangle::intersect(const Ray &ray,
 	if (glm::dot(intersection_record.normal_, ray.direction_) > 0)
 		intersection_record.normal_ = -intersection_record.normal_;
 
-	intersection_record.color_ = color_;
-     intersection_record.brdf_ = brdf_ / ((float) M_PI);
-     intersection_record.emittance_ = emittance_;
-     intersection_record.type_ = type_;
-
+	intersection_record.material_ = material_;
+	
 	return true;
 }
 
+AABB Triangle::getAABB(void) const
+{
+    AABB aabb;
+
+    aabb.min_ = glm::min(glm::min(v1, v2), v3);
+    aabb.max_ = glm::max(glm::max(v1, v2), v3);
+    aabb.centroid_ = (1.0f / 3.0f) * (v1 + v2 + v3);
+    return aabb;
+}

@@ -3,9 +3,8 @@
 Sphere::Sphere( void ): center_{0.0f, 0.0f, 0.0f }, radius_(1.0f)
 {}
 
-Sphere::Sphere( const glm::vec3 center, const glm::vec3 color, const glm::vec3 brdf,
-               const glm::vec3 emittance, std::string type, float radius) :
-     Primitive::Primitive(color, brdf, emittance, type),
+Sphere::Sphere(const glm::vec3 center, float radius, Material material) :
+     Primitive::Primitive(material),
      center_(center),
      radius_(radius)
 {}
@@ -42,11 +41,17 @@ bool Sphere::intersect( const Ray &ray,
     intersection_record.t_ =  ( t1 > 0.00001f ) ? t1 : t2;
     intersection_record.position_ = ray.origin_ + intersection_record.t_ * ray.direction_;
     intersection_record.normal_ = glm::normalize( intersection_record.position_ - center_ );
-    intersection_record.color_ = color_;
-    intersection_record.brdf_ = brdf_ / ((float) M_PI);
-    intersection_record.emittance_ = emittance_;
-    intersection_record.type_ = type_;
-
+    intersection_record.material_ = material_;
+    
     return true;
 }
 
+AABB Sphere::getAABB(void) const
+{
+    AABB aabb;
+
+    aabb.min_ = center_ - radius_;
+    aabb.max_ = center_ + radius_;
+    aabb.centroid_ = center_;
+    return aabb;
+}

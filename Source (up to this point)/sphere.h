@@ -12,11 +12,11 @@ public:
 
     Sphere( void );
 
-    Sphere(const glm::vec3 center, const glm::vec3 color, const glm::vec3 brdf,
-         const glm::vec3 emittance, std::string type, float radius);
-
+    Sphere(const glm::vec3 center, float radius, Material material);
     bool intersect( const Ray &ray,
                     IntersectionRecord &intersection_record ) const;
+
+    AABB getAABB(void) const;
 
      glm::vec3 center_;
      float radius_;

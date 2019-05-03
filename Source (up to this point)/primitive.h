@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "ray.h"
+#include "aabb.h"
+#include "material.h"
 #include "intersection_record.h"
 
 class Primitive
@@ -14,19 +16,16 @@ public:
 
     Primitive( void );
 
-    Primitive (const glm::vec3 color, const glm::vec3 brdf, const glm::vec3 emittance, std::string type);
+    Primitive (Material material);
 
     virtual ~Primitive( void );
 
     virtual bool intersect( const Ray &ray,
                             IntersectionRecord &intersection_record ) const = 0;
+    
+    virtual AABB getAABB( void ) const = 0;
 
-     void setColor( glm::vec3 color );
-
-     glm::vec3 color_;
-     glm::vec3 brdf_;
-     glm::vec3 emittance_;
-     std::string type_;
+     Material material_;
 };
 
 #endif /* PRIMITIVE_H_ */

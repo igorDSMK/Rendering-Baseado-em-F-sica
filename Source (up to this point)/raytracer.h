@@ -4,10 +4,12 @@
 #include <sstream>
 #include <iomanip>
 #include <cmath>
+#include <omp.h>
 
 #include "camera.h"
 #include "scene.h"
 #include "buffer.h"
+#include "randomizer.h"
 
 class RayTracer
 {

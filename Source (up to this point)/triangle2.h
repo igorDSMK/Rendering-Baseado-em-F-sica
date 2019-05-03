@@ -12,10 +12,10 @@ class Triangle2 : public Primitive
 public:
 
 	Triangle2(void) = delete;
-	Triangle2( const glm::vec3 v1, const glm::vec3 v2,const glm::vec3 v3,
-		const glm::vec3 color, const glm::vec3 brdf, const glm::vec3 emittance, std::string type);
+	Triangle2(const glm::vec3 v1, const glm::vec3 v2,const glm::vec3 v3, Material material);
 
 	bool intersect(const Ray &ray, IntersectionRecord &intersection_record) const;
+	AABB getAABB(void) const;
 
 	glm::vec3 v1, v2, v3;
 };

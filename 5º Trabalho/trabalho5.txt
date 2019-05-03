@@ -1,0 +1,24 @@
+Igor Giovanni da Silva Neves ----- 11503765 
+Vicente Avelino de Oliveira Neto - 11505303
+
+Descrição da Cena:
+	i. raios de profundidade de 5, 
+	ii. 10 amostras,
+	iii. Cena: conjunto de paredes brancas formadas por 2 triangulos gerando uma "Cornell box", o monkey.obj do blender e uma esfera (a qual está cortada ao meio pelo "teto" do paralelepípedo) como fonte de luz da cena. Dando o total de 979 primitivas.
+
+1 - Multithreading
+	API/biblioteca utilizada: OpenMP
+	Número de Threads: 2
+	Características do hardware: Intel Celeron(R) 3205U, 1.50GHz com 2 cores. 4GB RAM. Placa de vídeo: Intel Broadwell GT1
+
+2 - Estrutura de Aceleração
+	Estrutura Utilizada: BVH com AABBs baseada no algoritmo do artigo: "Ray Tracing Deformable Scenes Using Dynamic Bounding Volume Hierarchies". Ingo Wald, Solomon Boulos, and Peter Shirley
+	Critério de Subdivisão da cena e de parada: Algoritmo guloso com a função de custo Surface Area Heuristic (SAH)
+	Tempo de Construção da BVH: 0.024591 segs
+	Altura final da BVH: 17
+
+3 - Resultados dos tempos:
+	Sem técnicas de Aceleração: 438.316 segs
+	Só Multithreading: 430.239 segs
+	Só Estrutura de Aceleração: 29.1135 segs
+	Ambas técnicas: 23.9143 segs

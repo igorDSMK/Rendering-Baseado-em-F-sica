@@ -1,6 +1,4 @@
 #include "raytracer.h"
-#include <random>
-#include <chrono>
 
 RayTracer::RayTracer( Camera &camera,
                       const Scene &scene,
@@ -13,18 +11,15 @@ RayTracer::RayTracer( Camera &camera,
      buffer_( buffer )
 {}
 
-auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-std::uniform_real_distribution<float> distribuition(0.0f, 1.0f);
-std::mt19937 generator(seed);
-
 void RayTracer::integrate( void )
 {
     IntersectionRecord intersection_record;
+    int nSamples = 10;
 
     // Image space origin (i.e. x = 0 and y = 0) at the top left corner.
 
     // Loops over image rows
-    int nSamples = 30;
+     #pragma omp parallel for schedule( dynamic, 1 ) //private (intersection_record)
     for ( std::size_t y = 0; y < buffer_.v_resolution_; y++ )
     {
         std::stringstream progress_stream;
@@ -43,12 +38,8 @@ void RayTracer::integrate( void )
              {
                   intersection_record.t_ = std::numeric_limits< double >::max();
 
-                  auto w = distribuition(generator);
-                  auto h = distribuition(generator);
-                  while (w == 1.0f)
-                       w = distribuition(generator);
-                  while (h == 1.0f)
-                       h = distribuition(generator);
+		        float w = Randomizer::getRandom();
+		        float h = Randomizer::getRandom();
 
                   Ray ray{ camera_.getWorldSpaceRay( glm::vec2{ x + w, y + h } ) };
 
@@ -63,7 +54,8 @@ void RayTracer::integrate( void )
         }
     }
 
-    std::clog << std::endl;
+     std::clog << std::endl;
+     std::cout << "Num de threads: " << omp_get_max_threads() << std::endl;
 }
 
 glm::vec3 RayTracer::L(Ray ray, unsigned int curr_depth)
@@ -76,7 +68,7 @@ glm::vec3 RayTracer::L(Ray ray, unsigned int curr_depth)
      {
           if ( scene_.intersect( ray, intersection_record ) )
           {
-               if(intersection_record.type_ == "diffuse")
+               if(intersection_record.material_.type_ == "diffuse")
                {
                     Ray refl_ray = intersection_record.get_new_ray();
                     float dot_ = glm::dot(refl_ray.direction_, intersection_record.normal_);
@@ -87,9 +79,9 @@ glm::vec3 RayTracer::L(Ray ray, unsigned int curr_depth)
                          dot_ = -dot_;
                     }
 
-                    Lo = intersection_record.emittance_ + 2.0f * ((float)M_PI) * intersection_record.brdf_ * L(refl_ray, ++curr_depth) * dot_;
+                    Lo = intersection_record.material_.emittance_ + 2.0f * ((float)M_PI) * intersection_record.material_.brdf_ * L(refl_ray, ++curr_depth) * dot_;
                }
-               else if(intersection_record.type_ == "mirror")
+               else if(intersection_record.material_.type_ == "mirror")
                {
                     Ray refl_ray = intersection_record.get_reflection(ray);
                     Lo = L(refl_ray, ++curr_depth);

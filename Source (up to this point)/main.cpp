@@ -28,15 +28,16 @@ int main(void)
         3.25f,
         5.0f,
         glm::ivec2{x_resolution, y_resolution},
-        glm::vec3{ 0.0f, -0.5f, -4.0f },  // position // sombra: 0.5f, -1.0f, -1.5f / padrao: 0.0f, -0.5f, -4.0f
+        glm::vec3{0.0f, -0.5f, -4.0f},  // position
         glm::vec3{0.0f, 1.0f, 0.0f},     // up
-        glm::vec3{ 0.0f, -0.5f, 1.0f }}; // look at // sombra: 0.7f, 1.0f, 1.0f / padrao: 0.0f, -0.5f, 1.0f
+        glm::vec3{0.0f, -0.5f, 1.0f}}; // look at
 
     Scene scene{};
-	int w;
+
 	clock_t begin = clock();
 
     scene.load();
+    scene.buildBVH();
 
     Buffer rendering_buffer{ x_resolution, y_resolution };
     glm::vec3 background_color{ 0.0f, 0.0f, 0.0f };
@@ -56,7 +57,6 @@ int main(void)
 	clock_t end = clock();
 	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 	cout << elapsed_secs << " segs\n";
-	cin >> w;
 
     return EXIT_SUCCESS;
 }

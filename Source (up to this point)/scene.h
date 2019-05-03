@@ -15,6 +15,7 @@
 #include "sphere.h"
 #include "triangle.h"
 #include "triangle2.h"
+#include "bvh.h"
 
 class Scene
 {
@@ -28,8 +29,10 @@ public:
                     IntersectionRecord &intersection_record ) const;
 
     void load( void );
+    void buildBVH(void);
 
     std::vector< Primitive::PrimitiveUniquePtr > primitives_;
+    const BVH *bvh_ = nullptr;
 
 };
 
